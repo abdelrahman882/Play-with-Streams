@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="center" hgap="10" prefHeight="650.0" prefWidth="1150.0" vgap="10" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <Pane prefHeight="658.0" prefWidth="1150.0" GridPane.columnIndex="1">
+         <children>
+            <ImageView fitHeight="811.0" fitWidth="1217.0" layoutX="-16.0" layoutY="-33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@164825683-taxi-wallpapers.jpg" />
+               </image>
+            </ImageView>
+            <BarChart fx:id="twdf" layoutX="14.0" layoutY="291.0" opacity="0.95" prefHeight="242.0" prefWidth="278.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" tickLabelFill="#ddff00" />
+              </xAxis>
+              <yAxis>
+                 <NumberAxis side="LEFT" tickLabelFill="#ddff00" />
+              </yAxis>
+            </BarChart>
+            <LineChart fx:id="vpd" layoutX="592.0" layoutY="18.0" opacity="0.9" prefHeight="233.0" prefWidth="532.0" titleSide="BOTTOM">
+               <xAxis>
+                  <NumberAxis side="BOTTOM" tickLabelFill="#ddff00" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis side="LEFT" tickLabelFill="#ddff00" />
+               </yAxis>
+            </LineChart>
+            <BarChart fx:id="tabpd" layoutX="784.0" layoutY="262.0" opacity="0.95" prefHeight="345.0" prefWidth="343.0">
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" tickLabelFill="#ddff00" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis side="LEFT" tickLabelFill="#ddff00" />
+               </yAxis>
+            </BarChart>
+            <BarChart fx:id="tpd" layoutX="45.0" layoutY="22.0" minHeight="-Infinity" minWidth="-Infinity" opacity="0.95" prefHeight="205.0" prefWidth="532.0" titleSide="BOTTOM">
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" tickLabelFill="#ddff00" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis side="LEFT" tickLabelFill="#ddff00" />
+               </yAxis>
+            </BarChart>
+            <LineChart fx:id="mpt" layoutX="278.0" layoutY="258.0" opacity="0.9" prefHeight="388.0" prefWidth="532.0" titleSide="BOTTOM">
+               <xAxis>
+                  <NumberAxis side="BOTTOM" tickLabelFill="#d1f211" fx:id="xAxis" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis side="LEFT">
+                     <tickLabelFill>
+                        <LinearGradient endX="1.0" endY="0.34351146676158173" startY="0.3015267029973387">
+                           <stops>
+                              <Stop color="#010100" />
+                              <Stop color="#cfcb65" offset="0.993835616438356" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </tickLabelFill></NumberAxis>
+               </yAxis>
+            </LineChart>
+            <Button fx:id="start" layoutX="55.0" layoutY="540.0" mnemonicParsing="false" onAction="#getData" prefHeight="64.0" prefWidth="139.0" text="Start" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+               <textFill>
+                  <LinearGradient endX="0.42270992366412213" endY="1.0" startX="0.5066793820330204">
+                     <stops>
+                        <Stop color="#010100" />
+                        <Stop color="#d1e521" offset="0.20479452054794517" />
+                        <Stop color="#cfd211" offset="0.3280821917808219" />
+                        <Stop color="#c7db42" offset="0.5051396005437625" />
+                        <Stop color="#4d574a" offset="0.7582191780821916" />
+                        <Stop color="#f2ff0007" offset="0.993835616438356" />
+                        <Stop color="BLACK" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <font>
+                  <Font name="Berlin Sans FB" size="39.0" />
+               </font></Button>
+         </children>
+      </Pane>
+   </children>
+</GridPane>
