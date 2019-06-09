@@ -14,6 +14,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Play with Streams");
+
         primaryStage.setScene(new Scene(root, 1150, 650));
         primaryStage.setResizable(false);
         primaryStage.show();

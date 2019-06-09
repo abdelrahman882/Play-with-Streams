@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="tyrus-standalone-client-1.9">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../tyrus-standalone-client-1.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/tyrus-standalone-client-1.9.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

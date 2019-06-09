@@ -9,13 +9,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import org.json.*;
 import javafx.application.Platform;
-import java.io.File;
+
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.net.URI;
 import java.util.Date;
-import java.io.BufferedReader;
-import java.io.FileReader;
+
 import javafx.scene.chart.XYChart;
 public class Controller {
     private static Controller inst=null;
@@ -93,6 +93,7 @@ public class Controller {
     private class Month{
         private int days [] = new int[31];
         private int vDays [] = new int[31];
+
         private ArrayList<String> vendors [] = new ArrayList[31];
         private HashSet<String> allVendors  = new HashSet();
         private void updateTxtFile(){
@@ -104,8 +105,11 @@ public class Controller {
             +numberOfPickupsFromCD[0]+","
             +numberOfPickupsFromCD[1]+","
             +numberOfPickupsFromCD[2]);
+
+
             try {
-                java.io.PrintWriter writer = new java.io.PrintWriter("statistics.txt", "UTF-8");
+                    PrintWriter writer ;
+                    writer = new PrintWriter("statistics.txt", "UTF-8");
                 writer.println(res.toString());
                 writer.close();
             } catch (Exception e) {
@@ -141,6 +145,7 @@ public class Controller {
                     return true;
                 }
             }else {
+
                 if (Collections.binarySearch(listB, id) == 0) {
                     return true;
                 }
@@ -149,6 +154,9 @@ public class Controller {
         }
         int numberOfPickupsFromCD [] = new int [3];
         private void calcPickupLoc(int id,String type){
+            if(id==149){
+                System.out.println("lllllool");
+            }
             if(isLoc(id,0)){  // loc a
                 numberOfPickupsFromAB[getIndex(type)]++;
                 Platform.runLater(new Runnable() {
@@ -158,26 +166,30 @@ public class Controller {
                         tabpdS.get(0).getData().get(getIndex(type)).setYValue(numberOfPickupsFromAB[getIndex(type)]);
                     }
                 });
-            }else if(isLoc(id,1)){ // loc c
+            }
+            if(isLoc(id,1)){ // loc c
+
                 numberOfPickupsFromCD[getIndex(type)]++;
             }
         }
-        private int ctr[]=new int[3];
+        private int ctr=0;
+
         private void calcAvgTimePerTrip(int t, String type){
-            int index = getIndex(type);
+            int index = (getIndex(type)+1 )%3 ;//ui and coloring issue
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
 
-                    mptS.get(index).getData().add(new XYChart.Data<>(ctr[index],t));
+                    mptS.get(index).getData().add(new XYChart.Data<>(ctr,t));
                     if(mptS.get(index).getData().size()>=210){
                         mptS.get(index).getData().remove(0);
-                        xAxis.setLowerBound(ctr[0]-200);
-                        xAxis.setUpperBound(ctr[2]+50);
+                        xAxis.setLowerBound(ctr-250);
+                        xAxis.setUpperBound(ctr+20);
                     }
                 }
             });
-            ctr[index]+=1;
+
+            ctr+=1;
 
             minutesPerTrip[index] = minutesPerTrip[index] *minutesPerTripSamplesNum[index] +t;
             minutesPerTripSamplesNum[index]++;
@@ -249,13 +261,16 @@ public class Controller {
 
 
         try {
-            File f = new File("src/sample/taxi_zones_simple.csv");
-            BufferedReader br = new BufferedReader(new FileReader(f));
+            InputStream in = getClass().getResourceAsStream("taxi_zones_simple.csv");
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+           // File f = new File("./sample/taxi_zones_simple.csv");
+            //BufferedReader br = new BufferedReader(new FileReader(f));
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
                 switch (values[2].replaceAll("\"","")){
                     case locA:
+
                         if(values[1].replaceAll("\"","").equals(locA2))
                             listA.add(Integer.valueOf(values[0]));
                         break;
@@ -283,6 +298,7 @@ public class Controller {
             listA.sort(c);
             listB.sort(c);
         }catch (Exception e){
+
             e.printStackTrace();
         }
 
@@ -393,12 +409,11 @@ public class Controller {
                     try {
                         processMessage(new JSONObject(message));
                     }catch (Exception e){
-                        //TODO
+                        e.printStackTrace();
                     }
 
                 }
             } );
-
 
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -3,7 +3,7 @@
     <CLASSES />
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../tyrus-standalone-client-1.9-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/tyrus-standalone-client-1.9-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
